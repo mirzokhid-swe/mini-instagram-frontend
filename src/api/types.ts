@@ -22,6 +22,7 @@ export interface UserSummary {
   username: string
   full_name: string
   avatar_path: string
+  is_following: boolean
 }
 
 export interface FeedPost {
@@ -52,6 +53,8 @@ export interface ProfilePost {
   post_id: number
   thumbnail_path: string
   caption: string
+  likes_count: number
+  comments_count: number
   created_at: string
 }
 
