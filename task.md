@@ -65,36 +65,36 @@ mini-instagram-web/
 
 Wire these as CSS variables + Tailwind theme; support **Light and Dark** mode (design has both, toggle via `class="dark"` on `<html>`, persisted in `localStorage`, default = system preference).
 
-| Token | Light | Dark |
-| --- | --- | --- |
-| `--background` | `#F2F3F0` | `#111111` |
-| `--foreground` | `#111111` | `#FFFFFF` |
-| `--card` | `#FFFFFF` | `#1A1A1A` |
-| `--primary` | `#FF8400` | `#FF8400` |
-| `--primary-foreground` | `#111111` | `#111111` |
-| `--secondary` | `#E7E8E5` | `#2E2E2E` |
-| `--sidebar` | `#E7E8E5` | `#18181b` |
-| `--sidebar-border` | `#CBCCC9` | `#ffffff1a` |
+| Token                    | Light       | Dark          |
+| ------------------------ | ----------- | ------------- |
+| `--background`         | `#F2F3F0` | `#111111`   |
+| `--foreground`         | `#111111` | `#FFFFFF`   |
+| `--card`               | `#FFFFFF` | `#1A1A1A`   |
+| `--primary`            | `#FF8400` | `#FF8400`   |
+| `--primary-foreground` | `#111111` | `#111111`   |
+| `--secondary`          | `#E7E8E5` | `#2E2E2E`   |
+| `--sidebar`            | `#E7E8E5` | `#18181b`   |
+| `--sidebar-border`     | `#CBCCC9` | `#ffffff1a` |
 
 Fonts: `--font-primary` = **JetBrains Mono** (body/UI), `--font-secondary` = **Geist** (logo/headings). Load via Google Fonts / fontsource. Radii: use the `$--radius-m` style rounded corners consistently (Tailwind `rounded-lg`).
 
 ### 0.5 Design screens → routes
 
-| Pen frame | Route | Task |
-| --- | --- | --- |
-| Screen / Desktop Sign Up | `/signup` | F4 |
-| Screen / Desktop Log In | `/login` | F5 |
-| Desktop / Home | `/` | F7 |
-| Desktop / Create Post | `/create` | F8 |
-| Desktop / Post Detail, Other User Post | `/post/:postId` | F9–F11 |
-| Desktop / Delete Comment (dialog) | dialog on `/post/:postId` | F11 |
-| Screen / Desktop Own Profile | `/profile` | F12 |
-| Screen / Desktop Other User Profile | `/users/:userId` | F13 |
-| Desktop / Edit Profile | `/profile/edit` | F14 |
-| Desktop / Search | `/search` | F15 |
-| Desktop / Search Tags, Tag Results | `/search?tab=tags`, `/tags/:tag` | F16 |
-| Desktop / Notifications | `/notifications` | F17 |
-| WebSidebar (reusable frame) | shared layout | F3 |
+| Pen frame                              | Route                                | Task    |
+| -------------------------------------- | ------------------------------------ | ------- |
+| Screen / Desktop Sign Up               | `/signup`                          | F4      |
+| Screen / Desktop Log In                | `/login`                           | F5      |
+| Desktop / Home                         | `/`                                | F7      |
+| Desktop / Create Post                  | `/create`                          | F8      |
+| Desktop / Post Detail, Other User Post | `/post/:postId`                    | F9–F11 |
+| Desktop / Delete Comment (dialog)      | dialog on`/post/:postId`           | F11     |
+| Screen / Desktop Own Profile           | `/profile`                         | F12     |
+| Screen / Desktop Other User Profile    | `/users/:userId`                   | F13     |
+| Desktop / Edit Profile                 | `/profile/edit`                    | F14     |
+| Desktop / Search                       | `/search`                          | F15     |
+| Desktop / Search Tags, Tag Results     | `/search?tab=tags`, `/tags/:tag` | F16     |
+| Desktop / Notifications                | `/notifications`                   | F17     |
+| WebSidebar (reusable frame)            | shared layout                        | F3      |
 
 **Out of scope (design exists, backend does not):**
 
