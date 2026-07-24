@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { ProfileHeader } from './ProfileHeader'
 import { PostsGrid } from '@/components/shared/PostsGrid'
 import { EmptyState } from '@/components/shared/EmptyState'
+import { FollowListDialog } from '@/components/shared/FollowListDialog'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
 import { useAuthStore } from '@/stores/auth'
@@ -15,6 +17,7 @@ export function OtherUserProfilePage() {
   const { userId: userIdParam } = useParams<{ userId: string }>()
   const viewerId = useAuthStore((s) => s.userId)!
   const queryClient = useQueryClient()
+  const [followDialog, setFollowDialog] = useState<'followers' | 'following' | null>(null)
 
   const targetId = userIdParam ? Number(userIdParam) : NaN
   const isValidId = Number.isInteger(targetId)
@@ -120,6 +123,8 @@ export function OtherUserProfilePage() {
         postsCount={profile.posts_count}
         followersCount={profile.followers_count}
         followingCount={profile.following_count}
+        onShowFollowers={() => setFollowDialog('followers')}
+        onShowFollowing={() => setFollowDialog('following')}
         action={
           <Button
             variant={profile.is_following ? 'outline' : 'default'}
@@ -131,6 +136,15 @@ export function OtherUserProfilePage() {
           </Button>
         }
       />
+
+      {followDialog && (
+        <FollowListDialog
+          open
+          onOpenChange={(open) => !open && setFollowDialog(null)}
+          userId={targetId}
+          mode={followDialog}
+        />
+      )}
 
       {posts.length === 0 && !postsQuery.isLoading ? (
         <EmptyState title="No posts yet" />

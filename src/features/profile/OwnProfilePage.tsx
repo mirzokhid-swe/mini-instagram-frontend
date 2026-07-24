@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { ProfileHeader } from './ProfileHeader'
 import { PostsGrid } from '@/components/shared/PostsGrid'
 import { EmptyState } from '@/components/shared/EmptyState'
 import { ErrorState } from '@/components/shared/ErrorState'
+import { FollowListDialog } from '@/components/shared/FollowListDialog'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
 import { useAuthStore } from '@/stores/auth'
@@ -13,6 +15,7 @@ const PER_PAGE = 9
 
 export function OwnProfilePage() {
   const userId = useAuthStore((s) => s.userId)!
+  const [followDialog, setFollowDialog] = useState<'followers' | 'following' | null>(null)
 
   const profileQuery = useQuery({
     queryKey: ['userProfile', userId, userId],
@@ -59,12 +62,23 @@ export function OwnProfilePage() {
         postsCount={profile.posts_count}
         followersCount={profile.followers_count}
         followingCount={profile.following_count}
+        onShowFollowers={() => setFollowDialog('followers')}
+        onShowFollowing={() => setFollowDialog('following')}
         action={
           <Button asChild variant="outline" size="sm">
             <Link to="/profile/edit">Edit Profile</Link>
           </Button>
         }
       />
+
+      {followDialog && (
+        <FollowListDialog
+          open
+          onOpenChange={(open) => !open && setFollowDialog(null)}
+          userId={userId}
+          mode={followDialog}
+        />
+      )}
 
       {posts.length === 0 && !postsQuery.isLoading ? (
         <EmptyState

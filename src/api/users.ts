@@ -40,3 +40,11 @@ export function unfollow(_followerId: number, userId: number): Promise<null> {
 export function searchUsers(query: string, page: number, perPage = 10): Promise<Paginated<UserSummary>> {
   return apiClient.get<Paginated<UserSummary>>('/search/users', { q: query, page, per_page: perPage })
 }
+
+export function getFollowers(userId: number, page: number, perPage = 20): Promise<Paginated<UserSummary>> {
+  return apiClient.get<Paginated<UserSummary>>(`/users/${userId}/followers`, { page, per_page: perPage })
+}
+
+export function getFollowing(userId: number, page: number, perPage = 20): Promise<Paginated<UserSummary>> {
+  return apiClient.get<Paginated<UserSummary>>(`/users/${userId}/following`, { page, per_page: perPage })
+}

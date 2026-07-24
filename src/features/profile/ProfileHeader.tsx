@@ -11,6 +11,8 @@ export function ProfileHeader({
   followersCount,
   followingCount,
   action,
+  onShowFollowers,
+  onShowFollowing,
 }: {
   username: string
   fullName: string
@@ -20,6 +22,8 @@ export function ProfileHeader({
   followersCount: number
   followingCount: number
   action?: ReactNode
+  onShowFollowers?: () => void
+  onShowFollowing?: () => void
 }) {
   return (
     <div className="mb-8 flex items-center gap-10">
@@ -37,12 +41,12 @@ export function ProfileHeader({
           <span>
             <strong>{postsCount}</strong> posts
           </span>
-          <span>
+          <button type="button" onClick={onShowFollowers} className="hover:underline">
             <strong>{followersCount}</strong> followers
-          </span>
-          <span>
+          </button>
+          <button type="button" onClick={onShowFollowing} className="hover:underline">
             <strong>{followingCount}</strong> following
-          </span>
+          </button>
         </div>
         <p className="text-sm font-medium">{fullName}</p>
         {bio && <p className="max-w-md text-sm text-muted-foreground">{bio}</p>}
