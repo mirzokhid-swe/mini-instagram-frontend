@@ -50,6 +50,7 @@ export function TagResultsPage() {
         hasMore={postsQuery.hasNextPage ?? false}
         onLoadMore={() => postsQuery.fetchNextPage()}
         isLoadingMore={postsQuery.isFetchingNextPage}
+        showAuthor
       />
     </div>
   )
